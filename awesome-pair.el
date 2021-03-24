@@ -1365,7 +1365,7 @@ A and B are strings."
       (setq mark-active nil)
       (goto-char start)
       (insert a)
-      (goto-char (1+ end))
+      (goto-char (+ (length a) end))
       (insert b)
       (goto-char (+ (length a) start)))))
 
