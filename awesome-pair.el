@@ -207,6 +207,21 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-round))
+   ((derived-mode-p 'tex-mode)
+    (cond
+     ((= (char-before) ?\\)
+      (insert "(\\)")
+      (backward-char 2))
+     ((string= (buffer-substring-no-properties
+                (point)
+                (- (point) 5))
+               "\\left")
+      (insert "(  \\right)")
+      (backward-char 8))
+     (t
+      (insert "()")
+      (backward-char))
+     ))
    ((and (awesome-pair-in-string-p)
          (derived-mode-p 'js-mode))
     (insert "()")
@@ -224,6 +239,21 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-curly))
+   ((derived-mode-p 'tex-mode)
+    (cond
+     ((= (char-before) ?\\)
+      (insert "{\  \}")
+      (backward-char 3))
+     ((string= (buffer-substring-no-properties
+                (point)
+                (- (point) 5))
+               "\\left")
+      (insert "\\{  \\right\\}")
+      (backward-char 9))
+     (t
+      (insert "{}")
+      (backward-char))
+     ))
    ((and (awesome-pair-in-string-p)
          (derived-mode-p 'js-mode))
     (insert "{}")
@@ -246,6 +276,25 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-bracket))
+   ((derived-mode-p 'tex-mode)
+    (cond
+     ((= (char-before) ?\\)
+      (insert "[\\]")
+      (backward-char 2)
+      (newline 2)
+      (indent-according-to-mode)
+      (forward-line -1)
+      (indent-according-to-mode))
+     ((string= (buffer-substring-no-properties
+                (point)
+                (- (point) 5))
+               "\\left")
+      (insert "[  \\right]")
+      (backward-char 8))
+     (t
+      (insert "[]")
+      (backward-char))
+     ))
    ((and (awesome-pair-in-string-p)
          (derived-mode-p 'js-mode))
     (insert "[]")
