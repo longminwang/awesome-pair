@@ -365,6 +365,9 @@
            (insert "\""))
           (t
            (insert "\\\""))))
+        ((derived-mode-p 'tex-mode)
+         (insert "``''")
+         (backward-char 2))
         ((awesome-pair-in-comment-p)
          (insert "\""))
         (t
@@ -574,7 +577,10 @@ When in comment, kill to the beginning of the line."
                (t
                 (awesome-pair-wrap-region "\\\"" "\\\""))))
         ((region-active-p)
-         (awesome-pair-wrap-region "\"" "\""))
+         (cond ((derived-mode-p 'tex-mode)
+                (awesome-pair-wrap-region "``" "''"))
+               (t
+                (awesome-pair-wrap-region "\"" "\""))))
         ((awesome-pair-in-string-p)
          (goto-char (1+ (cdr (awesome-pair-string-start+end-points)))))
         ((awesome-pair-in-comment-p)
