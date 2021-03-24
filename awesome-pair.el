@@ -583,8 +583,7 @@ When in comment, kill to the beginning of the line."
         (t
          (awesome-pair-wrap (beginning-of-thing 'sexp) (end-of-thing 'sexp)
                             "\"" "\"")))
-  ;; Forward to jump in parenthesis.
-  (forward-char))
+  )
 
 (defun awesome-pair-unwrap (&optional argument)
   (interactive "P")
