@@ -212,10 +212,9 @@
      ((= (char-before) ?\\)
       (insert "(\\)")
       (backward-char 2))
-     ((string= (buffer-substring-no-properties
-                (point)
-                (- (point) 5))
-               "\\left")
+     ((string= "\\left" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
       (insert "(  \\right)")
       (backward-char 8))
      (t
@@ -244,10 +243,9 @@
      ((= (char-before) ?\\)
       (insert "{\  \}")
       (backward-char 3))
-     ((string= (buffer-substring-no-properties
-                (point)
-                (- (point) 5))
-               "\\left")
+     ((string= "\\left" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
       (insert "\\{  \\right\\}")
       (backward-char 9))
      (t
@@ -285,10 +283,9 @@
       (indent-according-to-mode)
       (forward-line -1)
       (indent-according-to-mode))
-     ((string= (buffer-substring-no-properties
-                (point)
-                (- (point) 5))
-               "\\left")
+     ((string= "\\left" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
       (insert "[  \\right]")
       (backward-char 8))
      (t
