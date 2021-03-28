@@ -241,7 +241,7 @@
    ((derived-mode-p 'tex-mode)
     (cond
      ((= (char-before) ?\\)
-      (insert "{\  \}")
+      (insert "{  \\}")
       (backward-char 3))
      ((string= "\\left" (buffer-substring-no-properties
                          (point)
