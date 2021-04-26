@@ -207,7 +207,8 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-round))
-   ((derived-mode-p 'tex-mode)
+   ((or (derived-mode-p 'tex-mode)
+        (derived-mode-p 'org-mode))
     (cond
      ((= (char-before) ?\\)
       (insert "(\\)")
@@ -238,7 +239,8 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-curly))
-   ((derived-mode-p 'tex-mode)
+   ((or (derived-mode-p 'tex-mode)
+        (derived-mode-p 'org-mode))
     (cond
      ((= (char-before) ?\\)
       (insert "{  \\}")
@@ -274,7 +276,8 @@
   (cond
    ((region-active-p)
     (awesome-pair-wrap-bracket))
-   ((derived-mode-p 'tex-mode)
+   ((or (derived-mode-p 'tex-mode)
+        (derived-mode-p 'org-mode))
     (cond
      ((= (char-before) ?\\)
       (insert "[\\]")
