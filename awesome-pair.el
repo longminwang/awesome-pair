@@ -218,6 +218,26 @@
                          (- (point) 5)))
       (insert "(  \\right)")
       (backward-char 8))
+     ((string= "\\big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "(  \\big)")
+      (backward-char 6))
+     ((string= "\\Big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "(  \\Big)")
+      (backward-char 6))
+     ((string= "\\bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "(  \\bigg)")
+      (backward-char 7))
+     ((string= "\\Bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "(  \\Bigg)")
+      (backward-char 7))
      (t
       (insert "()")
       (backward-char))
@@ -242,14 +262,59 @@
    ((or (derived-mode-p 'tex-mode)
         (derived-mode-p 'org-mode))
     (cond
-     ((= (char-before) ?\\)
-      (insert "{  \\}")
-      (backward-char 3))
      ((string= "\\left" (buffer-substring-no-properties
                          (point)
                          (- (point) 5)))
       (insert "\\{  \\right\\}")
       (backward-char 9))
+     ((string= "\\big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "\\{  \\big\\}")
+      (backward-char 7))
+     ((string= "\\Big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "\\{  \\Big\\}")
+      (backward-char 7))
+     ((string= "\\bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "\\{  \\bigg\\}")
+      (backward-char 8))
+     ((string= "\\Bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "\\{  \\Bigg\\}")
+      (backward-char 8))
+     ((string= "\\left\\" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 6)))
+      (insert "{  \\right\\}")
+      (backward-char 9))
+     ((string= "\\big\\" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "{  \\big\\}")
+      (backward-char 7))
+     ((string= "\\Big\\" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "{  \\Big\\}")
+      (backward-char 7))
+     ((string= "\\bigg\\" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 6)))
+      (insert "{  \\bigg\\}")
+      (backward-char 8))
+     ((string= "\\Bigg\\" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 6)))
+      (insert "{  \\Bigg\\}")
+      (backward-char 8))
+     ((= (char-before) ?\\)
+      (insert "{  \\}")
+      (backward-char 3))
      (t
       (insert "{}")
       (backward-char))
@@ -291,6 +356,26 @@
                          (- (point) 5)))
       (insert "[  \\right]")
       (backward-char 8))
+     ((string= "\\big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "[  \\big]")
+      (backward-char 6))
+     ((string= "\\Big" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 4)))
+      (insert "[  \\Big]")
+      (backward-char 6))
+     ((string= "\\bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "[  \\bigg]")
+      (backward-char 7))
+     ((string= "\\Bigg" (buffer-substring-no-properties
+                         (point)
+                         (- (point) 5)))
+      (insert "[  \\Bigg]")
+      (backward-char 7))
      (t
       (insert "[]")
       (backward-char))
