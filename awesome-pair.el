@@ -407,7 +407,9 @@
 (defun awesome-pair-close-round ()
   (interactive)
   (cond ((or (awesome-pair-in-string-p)
-             (awesome-pair-in-comment-p))
+             (awesome-pair-in-comment-p)
+             (and (fboundp 'texmathp)
+                  (texmathp)))
          (insert ")"))
         ;; Insert ) directly in sh-mode for case ... in syntax.
         ((or
@@ -428,7 +430,9 @@
 (defun awesome-pair-close-bracket ()
   (interactive)
   (cond ((or (awesome-pair-in-string-p)
-             (awesome-pair-in-comment-p))
+             (awesome-pair-in-comment-p)
+             (and (fboundp 'texmathp)
+                  (texmathp)))
          (insert "]"))
         (t
          (awesome-pair-fix-unbalanced-parentheses))))
