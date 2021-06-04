@@ -562,6 +562,8 @@ When in comment, kill to the end of the line."
          (awesome-pair-web-mode-kill))
         ((derived-mode-p 'ruby-mode)
          (awesome-pair-ruby-mode-kill))
+        ((derived-mode-p 'tex-mode)
+         (awesome-pair-tex-mode-kill))
         (t
          (awesome-pair-common-mode-kill))))
 
@@ -1269,6 +1271,19 @@ When in comment, kill to the beginning of the line."
 
 (defun awesome-pair-web-mode-backward-kill ()
   (message "Backward kill in web-mode is currently not implemented."))
+
+(defun awesome-pair-tex-mode-kill ()
+  "It's a smarter kill function for `ruby-mode'.
+
+If current line is blank line, re-indent line after kill whole line.
+
+If current line is not blank, do `awesome-pair-kill' first, re-indent the line.
+"
+  (if (awesome-pair-is-blank-line-p)
+      (awesome-pair-kill-blank-line-and-reindent)
+    ;; Do `awesome-pair-kill' first.
+    (awesome-pair-kill-internal)
+    (indent-for-tab-command)))
 
 (defun awesome-pair-ruby-mode-kill ()
   "It's a smarter kill function for `ruby-mode'.
