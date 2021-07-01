@@ -346,6 +346,15 @@
         (derived-mode-p 'org-mode))
     (cond
      ((= (char-before) ?\\)
+      (if (derived-mode-p 'org-mode)
+          (progn
+            (backward-char 1)
+            (kill-region (save-excursion
+                           (search-backward-regexp "[^ \t\n]" nil t)
+                           (forward-char 2)
+                           (point))
+                         (point))
+            (forward-char 1)))
       (insert "[\\]")
       (backward-char 2)
       (newline 2)
