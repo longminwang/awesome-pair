@@ -219,6 +219,12 @@
                          (- (point) 5)))
       (insert "(  \\right)")
       (backward-char 8))
+     ((string= "lr" (buffer-substring-no-properties
+                     (point)
+                     (- (point) 2)))
+      (delete-char -2)
+      (insert "\\left(  \\right)")
+      (backward-char 8))
      ((string= "\\big" (buffer-substring-no-properties
                          (point)
                          (- (point) 4)))
@@ -293,6 +299,12 @@
                          (- (point) 6)))
       (insert "{  \\right\\}")
       (backward-char 9))
+     ((string= "lr" (buffer-substring-no-properties
+                     (point)
+                     (- (point) 2)))
+      (delete-char -2)
+      (insert "\\left\\{  \\right\\}")
+      (backward-char 9))
      ((string= "\\big\\" (buffer-substring-no-properties
                          (point)
                          (- (point) 5)))
@@ -357,14 +369,20 @@
                          (- (point) 5)))
       (insert "[  \\right]")
       (backward-char 8))
+     ((string= "lr" (buffer-substring-no-properties
+                     (point)
+                     (- (point) 2)))
+      (delete-char -2)
+      (insert "\\left[  \\right]")
+      (backward-char 8))
      ((string= "\\big" (buffer-substring-no-properties
-                         (point)
-                         (- (point) 4)))
+                        (point)
+                        (- (point) 4)))
       (insert "[  \\big]")
       (backward-char 6))
      ((string= "\\Big" (buffer-substring-no-properties
-                         (point)
-                         (- (point) 4)))
+                        (point)
+                        (- (point) 4)))
       (insert "[  \\Big]")
       (backward-char 6))
      ((string= "\\bigg" (buffer-substring-no-properties
