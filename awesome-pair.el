@@ -358,12 +358,11 @@
         (derived-mode-p 'org-mode))
     (cond
      ((= (char-before) ?\\)
-      (insert "[\\]")
-      (backward-char 2)
-      (newline 2)
-      (indent-according-to-mode)
-      (forward-line -1)
-      (indent-according-to-mode))
+      (delete-char -1)
+      (if (bolp)
+          (progn (insert "\\[\n\n\\]\n") (backward-char 4))
+        (insert "\\[\\]")
+        (backward-char 2)))
      ((string= "\\left" (buffer-substring-no-properties
                          (point)
                          (- (point) 5)))
