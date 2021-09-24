@@ -361,8 +361,8 @@
       (delete-char -1)
       (if (bolp)
           (progn (insert "\\[\n\n\\]\n") (backward-char 4))
-        (insert "\\[\\]")
-        (backward-char 2)))
+        (insert "\\[  \\]")
+        (backward-char 3)))
      ((string= "\\left" (buffer-substring-no-properties
                          (point)
                          (- (point) 5)))
